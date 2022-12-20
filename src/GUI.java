@@ -14,7 +14,7 @@ public class GUI {
         JButton button;
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.gridwidth = 2;
+        c.gridwidth = 1;
         if (shouldFill) {
             //natural height, maximum width
             c.fill = GridBagConstraints.HORIZONTAL;
@@ -31,31 +31,50 @@ public class GUI {
 
         button = new JButton("Button 2");
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
         c.gridx = 0;
         c.gridy = 1;
         pane.add(button, c);
 
         button = new JButton("Button 3");
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
         c.gridx = 0;
         c.gridy = 2;
         pane.add(button, c);
 
         button = new JButton("Button 4");
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
         c.gridx = 0;
         c.gridy = 3;
         pane.add(button, c);
 
-        JTextArea panel = new JTextArea("Response");
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 0.5;
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        JLabel text = new JLabel("Reponse");
+        text.setHorizontalAlignment(JLabel.CENTER);
+        panel.setBackground(Color.RED);
+        panel.add(text, c);
         c.gridx = 0;
         c.gridy = 4;
+        c.ipady = 30;
         pane.add(panel, c);
+
+        JPanel townInfoPanel = new JPanel();
+        townInfoPanel.setLayout(new GridBagLayout());
+        JLabel townInfoText = new JLabel("Reponse");
+        townInfoText.setHorizontalAlignment(JLabel.CENTER);
+        townInfoPanel.setBackground(Color.RED);
+        townInfoPanel.add(townInfoText, c);
+        c.gridx = 1;
+        c.gridy = 0;
+        c.ipady = 30;
+        c.gridwidth = 3;
+        pane.add(townInfoPanel, c);
+
+        button = new JButton("Button new");
+        c.gridwidth = 1;
+        c.gridx = 2;
+        c.gridy = 1;
+        pane.add(button, c);
     }
 
     /**
