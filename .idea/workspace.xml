@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="We are bad">
+    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="I hate swing">
+      <change afterPath="$PROJECT_DIR$/src/Colors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Mode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Treasure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hunter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Town.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Town.java" afterDir="false" />
+    </list>
+    <list id="317f2ade-aab2-44b4-9f0a-5d39f1c0b179" name="Changes by BT_3W2_12" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Terrain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Town.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Town.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TreasureHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TreasureHunter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +32,22 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Town.java">
+      <ranges>
+        <range start1="105" end1="105" start2="105" end2="106" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="116" end1="116" start2="117" end2="118" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="133" end1="134" start2="135" end2="136" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="138" end1="140" start2="140" end2="142" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="163" end1="165" start2="165" end2="167" changelist="317f2ade-aab2-44b4-9f0a-5d39f1c0b179" />
+        <range start1="166" end1="167" start2="168" end2="169" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="168" end1="169" start2="170" end2="171" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="170" end1="171" start2="172" end2="173" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="172" end1="173" start2="174" end2="175" changelist="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" />
+        <range start1="174" end1="174" start2="176" end2="178" changelist="317f2ade-aab2-44b4-9f0a-5d39f1c0b179" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,7 +70,8 @@
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.general"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -52,7 +79,7 @@
       <recent name="C:\Users\BT_3W2_12\IdeaProjects\TreasureHunter\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TreasureHunterRunner">
     <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GUI" />
       <module name="TreasureHunter" />
@@ -82,7 +109,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671554597948</updated>
-      <workItem from="1671556661421" duration="2488000" />
+      <workItem from="1671556661421" duration="3410000" />
+      <workItem from="1671640074559" duration="10071000" />
+      <workItem from="1671812522751" duration="4325000" />
     </task>
     <task id="LOCAL-00001" summary="We are bad">
       <created>1671557698199</created>
@@ -91,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671557698199</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="I hate swing">
+      <created>1671562625277</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671562625277</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +146,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="We are bad" />
-    <option name="LAST_COMMIT_MESSAGE" value="We are bad" />
+    <MESSAGE value="I hate swing" />
+    <option name="LAST_COMMIT_MESSAGE" value="I hate swing" />
   </component>
 </project>
