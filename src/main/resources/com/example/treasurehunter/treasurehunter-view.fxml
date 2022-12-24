@@ -35,13 +35,13 @@
                           GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
                     <children>
                         <Button mnemonicParsing="false" onAction="#onShopClick" prefHeight="40.0" prefWidth="180.0"
-                                text="Shop"/>
+                                text="Open Shop"/>
                         <Button mnemonicParsing="false" onAction="#onTroubleClick" prefHeight="40.0" prefWidth="180.0"
                                 text="Look For Trouble"/>
                         <Button mnemonicParsing="false" onAction="#onHuntClick" prefHeight="40.0" prefWidth="180.0"
-                                text="Hunt for treasure"/>
+                                text="Hunt For Treasure"/>
                         <Button mnemonicParsing="false" onAction="#onMoveClick" prefHeight="40.0" prefWidth="180.0"
-                                text="Move "/>
+                                text="Move To Another Town"/>
                     </children>
                 </FlowPane>
                 <TextFlow accessibleText="hellos" prefHeight="200.0" prefWidth="200.0" textAlignment="LEFT"
