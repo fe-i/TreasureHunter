@@ -43,11 +43,15 @@ public class Hunter {
     }
 
     public boolean addTreasure(OutputInterface output, Treasure treasure) {
-        output.output("Weeee");
-        if (!treasureCollection.contains(treasure.getName())) treasureCollection += treasure.getName() + " ";
-        else output.output("You already own this treasure so you tossed it away.");
+        if (treasure.getName() == "Sand")
+            output.output("You thought you found gold but in reality it was just a pile of sand. What a bummer.");
+        else if (!treasureCollection.contains(treasure.getName())) {
+            treasureCollection += treasure.getName() + " ";
+            output.output("You stumbled upon a valuable piece of " + treasure.getName().toLowerCase() + " and decided to add it to your treasure collection.");
+        } else output.output("You already own this treasure so you tossed it away.");
         /* END GAME */
-        return (treasureCollection.split(" ").length) - 1 == 4;
+        System.out.println(treasureCollection);
+        return (treasureCollection.split(" ").length) == 3;
     }
 
     public void changeGold(int modifier) {

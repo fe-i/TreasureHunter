@@ -13,10 +13,8 @@ public class TreasureHunterApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TreasureHunterApp.class.getResource("treasurehunter-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1040, 600);
         stage.setResizable(false);
-
         stage.setTitle("Treasure Hunter");
         stage.setScene(scene);
-
         stage.show();
     }
 

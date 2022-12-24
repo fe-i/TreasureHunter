@@ -2,25 +2,41 @@ package com.example.treasurehunter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.text.Text;
-
-import java.util.Scanner;
 
 public class TreasureHunterController {
     @FXML
     private Text outputField;
+    @FXML
+    public OutputInterface output = (info) -> {
+        outputField.setText(info);
+    };
     @FXML
     private Text townInfo;
     @FXML
     private Text inventory;
     @FXML
     private ProgressBar coins;
-
     private Town currentTown;
     private Hunter hunter;
 
     public void welcomePlayer() {
-        Scanner scanner = new Scanner(System.in);
+        TextInputDialog nameDialog = new TextInputDialog("Hunter");
+        nameDialog.setTitle("Treasure Hunter Dialog");
+        nameDialog.setHeaderText("Welcome to TREASURE HUNTER!\nGoing hunting for the big treasure, eh?");
+        nameDialog.setContentText("What's your name?");
+        nameDialog.showAndWait();
+        String name = nameDialog.getEditor().getText();
+
+        TextInputDialog modeDialog = new TextInputDialog("Normal");
+        modeDialog.setTitle("Treasure Hunter Dialog");
+        modeDialog.setHeaderText("Choose your difficulty.\n[E]asy\n[N]ormal\n[H]ard");
+        modeDialog.setContentText("Mode:");
+        modeDialog.showAndWait();
+        String modeChoice = modeDialog.getEditor().getText();
+
+        /*Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to TREASURE HUNTER!");
         System.out.println("Going hunting for the big treasure, eh?");
@@ -29,20 +45,23 @@ public class TreasureHunterController {
 
         System.out.println("Choose your mode: " + Colors.GREEN + "(E)" + Colors.RESET + "asy " + Colors.YELLOW + "(N)" + Colors.RESET + "ormal " + Colors.RED + "(H)" + Colors.RESET + "ard");
         System.out.print("> ");
-        String modeChoice = scanner.nextLine();
+        String modeChoice = scanner.nextLine();*/
         if (modeChoice.equals("APCSAhacks")) {
             Mode.setCurrentMode(Mode.DEV_MODE);
-        } else if (modeChoice.equalsIgnoreCase("h")) {
+        } else if (modeChoice.substring(0, 1).equalsIgnoreCase("h")) {
             Mode.setCurrentMode(Mode.HARD_MODE);
-        } else if (modeChoice.equalsIgnoreCase("n")) {
+        } else if (modeChoice.substring(0, 1).equalsIgnoreCase("n")) {
             Mode.setCurrentMode(Mode.NORMAL_MODE);
-        } else if (modeChoice.equalsIgnoreCase("e")) {
+        } else if (modeChoice.substring(0, 1).equalsIgnoreCase("e")) {
             Mode.setCurrentMode(Mode.EASY_MODE);
         }
-        System.out.println("Starting on " + Colors.BLUE + Mode.getCurrentMode() + Colors.RESET + " mode.");
+        //System.out.println("Starting on " + Colors.BLUE + Mode.getCurrentMode() + Colors.RESET + " mode.");
+
+        output.output("Welcome " + name + "!\nStarting the game in " + Mode.getCurrentMode() + " mode.");
 
         // set hunter instance variable
         hunter = new Hunter(name, Mode.getStartingGold());
+        coins.setProgress(hunter.getGold() / 100.0);
     }
 
     /**
@@ -72,18 +91,18 @@ public class TreasureHunterController {
     @FXML
     protected void onShopClick() {
         outputField.setText("u shopped");
-        coins.setProgress(10 / 200.0);
         currentTown.enterShop("b");
+        coins.setProgress(hunter.getGold() / 100.0);
     }
 
     @FXML
     protected void onTroubleClick() {
         boolean bankrupt = currentTown.lookForTrouble();
+        coins.setProgress(hunter.getGold() / 100.0);
         if (bankrupt) {
             output.output("You lost all of your gold in the brawl, " + hunter.getHunterName() + "! How unfortunate :(");
             /* END GAME */
         }
-
     }
 
     @FXML
@@ -101,18 +120,11 @@ public class TreasureHunterController {
     @FXML
     protected void onMoveClick() {
         if (Mode.isEasy() || Mode.isDev() || currentTown.leaveTown()) {
-            //This town is going away so print its news ahead of time.
             output.output(currentTown.getLatestNews());
             enterTown();
             townInfo.setText(currentTown.toString());
-        }
+        } else output.output("You're unable to leave this town.");
     }
-
-
-    @FXML
-    public OutputInterface output = (info) -> {
-        outputField.setText(info);
-    };
 
     @FXML
     public void initialize() {

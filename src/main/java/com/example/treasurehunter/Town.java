@@ -106,7 +106,7 @@ public class Town {
             case "Desert" -> printMessage += "Fine, i'll desert my gold with you. Good brawl.";
             case "Jungle" ->
                     printMessage += "Well done. You have earned my admiration and my gold. Also I'm a monkey!! Ooh ooh ahh ahh!!";
-            case "Classroom" -> printMessage += "I hope you cherish your knowledge as much as you cherish my gold.";
+            case "Schools" -> printMessage += "I hope you cherish your knowledge as much as you cherish my gold.";
             default -> printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
         }
     }
@@ -119,7 +119,7 @@ public class Town {
             case "Desert" ->
                     printMessage += "We call that a sandy defeat because you've been dried out of cash. I never got the saying either.";
             case "Jungle" -> printMessage += "Swing to another tree, outsider. We've earned your money now!";
-            case "Classroom" -> printMessage += "Pay your tuition and scram!!!";
+            case "Schools" -> printMessage += "Pay your tuition and scram!!!";
             default -> printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
         }
     }
@@ -179,7 +179,7 @@ public class Town {
         } else if (rnd == 5) {
             return new Terrain("Jungle", "Machete");
         } else {
-            return new Terrain("Classroom", "Pencil");
+            return new Terrain("Schools", "Pencil");
         }
     }
 
