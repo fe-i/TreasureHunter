@@ -1,9 +1,16 @@
 package com.example.treasurehunter;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class TreasureHunterController {
     @FXML
@@ -89,15 +96,28 @@ public class TreasureHunterController {
     }
 
     @FXML
-    protected void onShopClick() {
-        outputField.setText("u shopped");
-        currentTown.enterShop("b");
-        coins.setProgress(hunter.getGold() / 100.0);
+    protected void onShopClick() throws IOException {
+
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(TreasureHunterController.class.getResource("shop-view.fxml")));
+            Stage stage = new Stage();
+            stage.setTitle("Town Shop");
+            stage.setScene(new Scene(root, 780, 450));
+            stage.setResizable(false);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        currentTown.enterShop("b");
     }
 
     @FXML
     protected void onTroubleClick() {
         boolean bankrupt = currentTown.lookForTrouble();
+        output.output(currentTown.getLatestNews());
         coins.setProgress(hunter.getGold() / 100.0);
         if (bankrupt) {
             output.output("You lost all of your gold in the brawl, " + hunter.getHunterName() + "! How unfortunate :(");
@@ -120,9 +140,9 @@ public class TreasureHunterController {
     @FXML
     protected void onMoveClick() {
         if (Mode.isEasy() || Mode.isDev() || currentTown.leaveTown()) {
-            output.output(currentTown.getLatestNews());
             enterTown();
             townInfo.setText(currentTown.toString());
+            output.output(currentTown.getLatestNews());
         } else output.output("You're unable to leave this town.");
     }
 

@@ -10,6 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="TreasureHunter" target="17" />
       <module name="treasurehunter" target="17" />
     </bytecodeTargetLevel>
   </component>
