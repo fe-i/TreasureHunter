@@ -1,41 +1,38 @@
 package com.example.treasurehunter;
 
 /**
- * Hunter Class<br /><br />
+ * Hunter Class
  * This class represents the treasure hunter character (the player) in the Treasure Hunt game.
  * This code has been adapted from Ivan Turner's original program -- thank you Mr. Turner!
  */
 public class Hunter {
-    //Keeps the items in the kit separate
-    private static final String KIT_DELIMITER = ";";
-
     //instance variables
-    private String hunterName;
-    private String kit;
-    private String treasureCollection;
+    private String name;
+    private String inventory;
+    private String treasures;
     private int gold;
 
-    //Constructor
+    //constructor
 
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
      *
-     * @param hunterName The hunter's name.
+     * @param name The hunter's name.
      */
-    public Hunter(String hunterName, int startingGold) {
-        this.hunterName = hunterName;
-        kit = "";
-        treasureCollection = "";
+    public Hunter(String name, int startingGold) {
+        this.name = name;
+        inventory = "";
+        treasures = "";
         gold = startingGold;
     }
 
     //Accessors
-    public String getHunterName() {
-        return hunterName;
+    public String getName() {
+        return name;
     }
 
-    public String getKit() {
-        return kit;
+    public String getInventory() {
+        return inventory;
     }
 
     public int getGold() {
@@ -44,14 +41,14 @@ public class Hunter {
 
     public boolean addTreasure(OutputInterface output, Treasure treasure) {
         if (treasure.getName() == "Sand")
-            output.output("You thought you found gold but in reality it was just a pile of sand. What a bummer.");
-        else if (!treasureCollection.contains(treasure.getName())) {
-            treasureCollection += treasure.getName() + " ";
+            output.output("You thought you struck gold but in reality it was just a pile of sand. What a bummer.");
+        else if (!treasures.contains(treasure.getName())) {
+            treasures += treasure.getName() + " ";
             output.output("You stumbled upon a valuable piece of " + treasure.getName().toLowerCase() + " and decided to add it to your treasure collection.");
-        } else output.output("You already own this treasure so you tossed it away.");
+        } else
+            output.output("You already have a piece of " + treasure.getName().toLowerCase() + " so you tossed it away.");
         /* END GAME */
-        System.out.println(treasureCollection);
-        return (treasureCollection.split(" ").length) == 3;
+        return treasures.split(" ").length == 3;
     }
 
     public void changeGold(int modifier) {
@@ -69,13 +66,11 @@ public class Hunter {
      * @return true if the item is successfully bought.
      */
     public boolean buyItem(String item, int costOfItem) {
-        if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item)) {
+        if (costOfItem == 0 || gold < costOfItem || hasItem(item)) {
             return false;
         }
-
         gold -= costOfItem;
-        addItem(item.substring(0, 1).toUpperCase() + item.substring(1).toLowerCase());
-        return true;
+        return addItem(item.substring(0, 1).toUpperCase() + item.substring(1).toLowerCase());
     }
 
     /**
@@ -87,10 +82,9 @@ public class Hunter {
      * @return true if the item was successfully sold.
      */
     public boolean sellItem(String item, int buyBackPrice) {
-        if (buyBackPrice <= 0 || !hasItemInKit(item)) {
+        if (buyBackPrice <= 0 || !hasItem(item)) {
             return false;
         }
-
         gold += buyBackPrice;
         removeItemFromKit(item);
         return true;
@@ -103,43 +97,40 @@ public class Hunter {
      */
     public void removeItemFromKit(String item) {
         // if item is found
-        if (hasItemInKit(item)) {
-            int itmIdx = kit.toLowerCase().indexOf(item.toLowerCase());
-            int endIdx = kit.indexOf(KIT_DELIMITER, itmIdx);
-            String tmpKit = kit.substring(0, itmIdx);
-
-            tmpKit += kit.substring(endIdx + 1);
+        if (hasItem(item)) {
+            int itmIdx = inventory.toLowerCase().indexOf(item.toLowerCase());
+            int endIdx = inventory.indexOf(" ", itmIdx);
+            String tmpKit = inventory.substring(0, itmIdx);
+            tmpKit += inventory.substring(endIdx + 1);
 
             // update kit
-            kit = tmpKit;
+            inventory = tmpKit;
         }
     }
 
     /**
-     * Checks to make sure that the item is not already in the kit.
-     * If not, it adds an item to the end of the String representing the hunter's kit.<br /><br />
-     * A KIT_DELIMITER character is added to the end of the of String.
+     * Checks to make sure that the item is not already in the inventory.
+     * If not, it adds an item to the end of the String representing the hunter's inventory.
      *
-     * @param item The item to be added to the kit.
-     * @returns true if the item is not in the kit and has been added.
+     * @param item The item to be added to the inventory.
+     * @return true if the item is not in the inventory and has been added.
      */
     private boolean addItem(String item) {
-        if (!hasItemInKit(item)) {
-            kit += item + KIT_DELIMITER;
+        if (!hasItem(item)) {
+            inventory += item + " ";
             return true;
         }
-
         return false;
     }
 
     /**
-     * Searches the kit String for a specified item.
+     * Searches the inventory String for a specified item.
      *
      * @param item The search item
      * @return true if the item is found.
      */
-    public boolean hasItemInKit(String item) {
-        return kit.toLowerCase().contains(item.toLowerCase());
+    public boolean hasItem(String item) {
+        return inventory.toLowerCase().contains(item.toLowerCase());
     }
 
     /**
@@ -147,26 +138,18 @@ public class Hunter {
      * is a list of the items in kit, with the KIT_DELIMITER replaced with a space
      *
      * @return The printable String representation of the inventory
+     * @deprecated it's now called getInventory
      */
-    public String getInventory() {
-        String printableKit = kit;
-        String space = " ";
-
-        int index = 0;
-
-        while (printableKit.contains(KIT_DELIMITER)) {
-            index = printableKit.indexOf(KIT_DELIMITER);
-            printableKit = printableKit.substring(0, index) + space + printableKit.substring(index + 1);
-        }
-        return printableKit;
+    public String getKit() {
+        return inventory;
     }
 
     /**
      * @return A string representation of the hunter.
      */
     public String toString() {
-        String str = hunterName + " has " + gold + " gold";
-        if (!kit.equals("")) {
+        String str = name + " has " + gold + " gold";
+        if (!inventory.equals("")) {
             str += " and " + getInventory();
         }
         return str;

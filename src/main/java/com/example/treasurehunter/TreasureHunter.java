@@ -9,7 +9,6 @@ package com.example.treasurehunter; /**
 import java.util.Scanner;
 
 public class TreasureHunter {
-
     //Instance variables
     private Town currentTown;
     private Hunter hunter;
@@ -29,7 +28,7 @@ public class TreasureHunter {
     public void play() {
         welcomePlayer();
         enterTown();
-        //showMenu();
+        showMenu();
     }
 
     /**
@@ -131,7 +130,7 @@ public class TreasureHunter {
         } else if (choice.equalsIgnoreCase("l")) {
             boolean bankrupt = currentTown.lookForTrouble();
             if (bankrupt) {
-                System.out.println("You lost all of your gold in the brawl, " + hunter.getHunterName() + "! How unfortunate :(");
+                System.out.println("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
             }
             return bankrupt;
         } else if (choice.equalsIgnoreCase("h")) {
@@ -144,7 +143,7 @@ public class TreasureHunter {
 //                return hasAllTreasure;
             } else System.out.println("You have already searched this town.");
         } else if (choice.equalsIgnoreCase("x")) {
-            System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+            System.out.println("Fare thee well, " + hunter.getName() + "!");
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }

@@ -29,6 +29,7 @@ public class TreasureHunterController {
     private Town currentTown;
     private Shop shop;
     private Parent shopRoot;
+    private Scene shopScene;
     private Hunter hunter;
 
     public void welcomePlayer() {
@@ -66,7 +67,6 @@ public class TreasureHunterController {
             Mode.setCurrentMode(Mode.EASY_MODE);
         }
 
-
         System.out.println("Worse");
         //System.out.println("Starting on " + Colors.BLUE + Mode.getCurrentMode() + Colors.RESET + " mode.");
 
@@ -92,17 +92,15 @@ public class TreasureHunterController {
 
         try {
             FXMLLoader loader = new FXMLLoader(TreasureHunterController.class.getResource("shop-view.fxml"));
-
             shopRoot = loader.load();
-
+            shopScene = new Scene(shopRoot, 780, 450);
             ShopController controller = loader.getController();
             controller.setShop(shop);
             controller.setHunter(hunter);
-        } catch(IOException e){
+            controller.updateShop();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
@@ -118,16 +116,14 @@ public class TreasureHunterController {
 
     @FXML
     protected void onShopClick() {
-            Stage stage = new Stage();
-            stage.setTitle("Town Shop");
-            stage.setScene(new Scene(shopRoot, 780, 450));
-            stage.setResizable(false);
-            stage.show();
+        Stage stage = new Stage();
+        stage.setTitle("Town Shop");
+        stage.setScene(shopScene);
+        stage.setResizable(false);
+        stage.show();
 
 //        currentTown.enterShop("b");
     }
-
-
 
     @FXML
     protected void onTroubleClick() {
@@ -136,7 +132,7 @@ public class TreasureHunterController {
         output.output(currentTown.getLatestNews());
         coins.setProgress(hunter.getGold() / 100.0);
         if (bankrupt) {
-            output.output("You lost all of your gold in the brawl, " + hunter.getHunterName() + "! How unfortunate :(");
+            output.output("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
             /* END GAME */
         }
     }
@@ -169,5 +165,4 @@ public class TreasureHunterController {
         enterTown();
         townInfo.setText(currentTown.toString());
     }
-
 }

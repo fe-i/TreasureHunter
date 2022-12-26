@@ -31,10 +31,10 @@ public class Town {
         // gets called from a client class
         hunter = null;
 
-        printMessage = "";
-
         // higher toughness = more likely to be a tough town
-        toughTown = (Math.random() < toughness);
+        toughTown = Math.random() < toughness;
+
+        // initialize town treasure
         treasure = new Treasure();
         hasBeenSearched = false;
     }
@@ -62,7 +62,7 @@ public class Town {
      */
     public void hunterArrives(Hunter hunter) {
         this.hunter = hunter;
-        printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
+        printMessage = "Welcome to town, " + hunter.getName() + ".";
 
         if (toughTown) {
             printMessage += "\nIt's pretty rough around here, so watch yourself.";
@@ -85,11 +85,9 @@ public class Town {
                 hunter.removeItemFromKit(item);
                 printMessage += "\nUnfortunately, your " + item + " broke.";
             }
-
             return true;
         }
-
-        printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
+        printMessage = "You can't leave town, " + hunter.getName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
     }
 

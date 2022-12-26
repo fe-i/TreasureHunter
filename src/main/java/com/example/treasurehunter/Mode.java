@@ -8,16 +8,16 @@ public class Mode {
 
     private static String currentMode = NORMAL_MODE;
 
-    public static void setCurrentMode(String currentMode) {
-        Mode.currentMode = currentMode;
-    }
-
     public static String getCurrentMode() {
         return currentMode;
     }
 
+    public static void setCurrentMode(String currentMode) {
+        Mode.currentMode = currentMode;
+    }
+
     public static int getStartingGold() {
-        int startingGold = 0;
+        int startingGold;
         switch (currentMode) {
             case EASY_MODE -> startingGold = 50;
             case NORMAL_MODE -> startingGold = 20;

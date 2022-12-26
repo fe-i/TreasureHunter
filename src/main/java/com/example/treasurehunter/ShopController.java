@@ -22,88 +22,83 @@ public class ShopController {
     @FXML
     private Text outputFieldBuy;
     @FXML
+    public OutputInterface outputBuy = (info) -> outputFieldBuy.setText(info);
+    @FXML
     private Text outputFieldSell;
     @FXML
-    private RadioButton sellOption1,sellOption2,sellOption3,sellOption4,sellOption5,sellOption6;
+    public OutputInterface outputSell = (info) -> outputFieldSell.setText(info);
+    @FXML
+    private RadioButton sellOption1, sellOption2, sellOption3, sellOption4, sellOption5, sellOption6;
 
     @FXML
-    public OutputInterface outputBuy = (info) -> {
-        outputFieldBuy.setText(info);
-    };
-
-    @FXML
-    public OutputInterface outputSell = (info) -> {
-        outputFieldSell.setText(info);
-    };
-
-
-    @FXML
-    protected void onPurchaseClick(){
+    protected void onPurchaseClick() {
         RadioButton shopChoice = (RadioButton) buyOption.getSelectedToggle();
-        String shopChoiceValue = shopChoice.getText();
+        if (shopChoice != null) {
 
-        boolean doesExist = shop.checkMarketPrice(shopChoiceValue, true) != 0;
+            String shopChoiceValue = shopChoice.getText();
 
-        if (!doesExist) {
-            outputBuy.output("We ain't got none of those.");
-        } else {
-            if(buyButton.getText().equals("Buy")){
-                // First click
+            boolean doesExist = shop.checkMarketPrice(shopChoiceValue, true) != 0;
 
-                int[] costs = {
-                        Shop.WATER_COST, Shop.ROPE_COST, Shop.MACHETE_COST, Shop.HORSE_COST, Shop.BOAT_COST, Shop.PENCIL_COST};
-                if (Mode.isDev()) {
-                    costs = new int[]{1, 1, 1, 1, 1, 1};
-                }
-                int idx = Integer.parseInt(shopChoice.getId().substring(9, 10));
-
-                buyButton.setText("Pay " + costs[idx] + " gold?");
-                outputBuy.output("It'll cost you " + costs[idx] + " gold. Buy it? ");
+            if (!doesExist) {
+                outputBuy.output("We ain't got none of those.");
             } else {
-                // Confirming
-                if(shop.buyItem(shopChoiceValue)) {
-                    outputBuy.output("Ye' got yerself a " + shopChoiceValue + ". Come again soon.");
-                } else{
-                    outputBuy.output("Hmm, either you don't have enough gold or you've already got one of those!");
+                if (buyButton.getText().equals("Buy")) {
+                    // First click
+
+                    int[] costs = {
+                            Shop.WATER_COST, Shop.ROPE_COST, Shop.MACHETE_COST, Shop.HORSE_COST, Shop.BOAT_COST, Shop.PENCIL_COST};
+                    if (Mode.isDev()) {
+                        costs = new int[]{1, 1, 1, 1, 1, 1};
+                    }
+                    int idx = Integer.parseInt(shopChoice.getId().substring(9, 10)) - 1;
+
+                    buyButton.setText("Pay " + costs[idx] + " gold?");
+                    outputBuy.output("It'll cost you " + costs[idx] + " gold. Buy it? ");
+                } else {
+                    // Confirming
+                    if (shop.buyItem(shopChoiceValue)) {
+                        outputBuy.output("Ye' got yerself a " + shopChoiceValue + ". Come again soon.");
+                    } else {
+                        outputBuy.output("Hmm, either you don't have enough gold or you've already got one of those!");
+                    }
+                    buyButton.setText("Buy");
+                    updateShop();
                 }
-                buyButton.setText("Buy");
             }
-
-
-        }
+        } else outputBuy.output("Select something before trying to buy it!");
     }
 
     @FXML
-    protected void onSellClick(){
+    protected void onSellClick() {
         RadioButton shopChoice = (RadioButton) sellOption.getSelectedToggle();
-        String shopChoiceValue = shopChoice.getText();
+        if (shopChoice != null) {
+            String shopChoiceValue = shopChoice.getText();
 
-        int cost = shop.checkMarketPrice(shopChoiceValue, false);
+            int cost = shop.checkMarketPrice(shopChoiceValue, false);
 
-        boolean doesExist = cost != 0;
+            boolean doesExist = cost != 0;
 
-        if (!doesExist) {
-            outputBuy.output("We don't want none of those.");
-        } else {
-            if(sellButton.getText().equals("Sell")){
-                // First click
-                sellButton.setText("Trade for " + cost + " gold?");
-                outputSell.output("It'll get you " + cost + " gold. Sell it? ");
+            if (!doesExist) {
+                outputBuy.output("We don't want none of those.");
             } else {
-                // Confirming
-                boolean didSell = shop.sellItem(shopChoiceValue);
-                sellButton.setText("Sell");
-                if (didSell) {
-                    outputSell.output( "Pleasure doin' business with you." );
+                if (sellButton.getText().equals("Sell")) {
+                    // First click
+                    sellButton.setText("Trade for " + cost + " gold?");
+                    outputSell.output("It'll get you " + cost + " gold. Sell it? ");
                 } else {
-                   outputSell.output("Stop stringin' me along!");
+                    // Confirming
+                    boolean didSell = shop.sellItem(shopChoiceValue);
+                    if (didSell) {
+                        outputSell.output("Pleasure doin' business with you.");
+                    } else {
+                        outputSell.output("Stop stringin' me along!");
+                    }
+                    sellButton.setText("Sell");
+                    updateShop();
                 }
             }
-
-
-        }
+        } else outputSell.output("Select something before trying to buy it!");
     }
-
 
     @FXML
     public void initialize() {
@@ -115,16 +110,15 @@ public class ShopController {
 
     public void setHunter(Hunter hunter) {
         this.hunter = hunter;
-        shop.buyItem("water");
-        shop.buyItem("machete");
-        RadioButton[] buttons = new RadioButton[]{sellOption1,sellOption2,sellOption3,sellOption4,sellOption5,sellOption6};
+    }
 
-        for(int i = 0; i < 6; i++){
+    public void updateShop() {
+        RadioButton[] buttons = new RadioButton[]{sellOption1, sellOption2, sellOption3, sellOption4, sellOption5, sellOption6};
+
+        for (int i = 0; i < 6; i++) {
             RadioButton button = buttons[i];
-            if(!hunter.getInventory().contains(button.getText())){
-                button.setDisable(true);
-            }
+            button.setSelected(false);
+            button.setDisable(!hunter.getInventory().contains(button.getText()));
         }
-
     }
 }
