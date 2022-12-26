@@ -10,7 +10,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class TreasureHunterController {
     @FXML
@@ -25,7 +24,11 @@ public class TreasureHunterController {
     private Text inventory;
     @FXML
     private ProgressBar coins;
+
+
     private Town currentTown;
+    private Shop shop;
+    private Parent shopRoot;
     private Hunter hunter;
 
     public void welcomePlayer() {
@@ -62,6 +65,9 @@ public class TreasureHunterController {
         } else if (modeChoice.substring(0, 1).equalsIgnoreCase("e")) {
             Mode.setCurrentMode(Mode.EASY_MODE);
         }
+
+
+        System.out.println("Worse");
         //System.out.println("Starting on " + Colors.BLUE + Mode.getCurrentMode() + Colors.RESET + " mode.");
 
         output.output("Welcome " + name + "!\nStarting the game in " + Mode.getCurrentMode() + " mode.");
@@ -79,9 +85,24 @@ public class TreasureHunterController {
         double toughness = Mode.getToughness();
 
         // note that we don't need to access the Shop object
-        // outside of this method, so it isn't necessary to store it as an instance
+        // outside this method, so it isn't necessary to store it as an instance
         // variable; we can leave it as a local variable
-        Shop shop = new Shop(markdown);
+        shop = new Shop(markdown);
+        shop.enter(hunter, "b");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(TreasureHunterController.class.getResource("shop-view.fxml"));
+
+            shopRoot = loader.load();
+
+            ShopController controller = loader.getController();
+            controller.setShop(shop);
+            controller.setHunter(hunter);
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
+
 
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
@@ -96,27 +117,22 @@ public class TreasureHunterController {
     }
 
     @FXML
-    protected void onShopClick() throws IOException {
-
-        Parent root;
-        try {
-            root = FXMLLoader.load(Objects.requireNonNull(TreasureHunterController.class.getResource("shop-view.fxml")));
+    protected void onShopClick() {
             Stage stage = new Stage();
             stage.setTitle("Town Shop");
-            stage.setScene(new Scene(root, 780, 450));
+            stage.setScene(new Scene(shopRoot, 780, 450));
             stage.setResizable(false);
             stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
 
 //        currentTown.enterShop("b");
     }
 
+
+
     @FXML
     protected void onTroubleClick() {
         boolean bankrupt = currentTown.lookForTrouble();
+        System.out.println("Baddddd");
         output.output(currentTown.getLatestNews());
         coins.setProgress(hunter.getGold() / 100.0);
         if (bankrupt) {
@@ -127,6 +143,7 @@ public class TreasureHunterController {
 
     @FXML
     protected void onHuntClick() {
+        System.out.println(hunter.getInventory());
         if (!currentTown.getHasBeenSearched()) {
             boolean hasAllTreasure = hunter.addTreasure(output, currentTown.getTreasure());
             currentTown.setHasBeenSearched(true);
@@ -152,4 +169,5 @@ public class TreasureHunterController {
         enterTown();
         townInfo.setText(currentTown.toString());
     }
+
 }

@@ -4,16 +4,14 @@ package com.example.treasurehunter; /**
  * This code has been adapted from Ivan Turner's original program -- thank you Mr. Turner!
  */
 
-import java.util.Scanner;
-
 public class Shop {
     // constants
-    private static final int WATER_COST = 2;
-    private static final int ROPE_COST = 4;
-    private static final int MACHETE_COST = 6;
-    private static final int HORSE_COST = 12;
-    private static final int BOAT_COST = 20;
-    private static final int PENCIL_COST = 8;
+    public static final int WATER_COST = 2;
+    public static final int ROPE_COST = 4;
+    public static final int MACHETE_COST = 6;
+    public static final int HORSE_COST = 12;
+    public static final int BOAT_COST = 20;
+    public static final int PENCIL_COST = 8;
 
     // instance variables
     private double markdown;
@@ -34,40 +32,40 @@ public class Shop {
     public void enter(Hunter hunter, String buyOrSell) {
         customer = hunter;
 
-        Scanner scanner = new Scanner(System.in);
-        if (buyOrSell.equalsIgnoreCase("b")) {
-            System.out.println("Welcome to the shop! We have the finest wares in town.");
-            System.out.println(Colors.CYAN + "Currently we have the following items:" + Colors.RESET);
-            System.out.println(Colors.PURPLE + inventory() + Colors.RESET);
-            System.out.print(Colors.GREEN + "What're you lookin' to buy? " + Colors.RESET);
-            String item = scanner.nextLine();
-            int cost = checkMarketPrice(item, true);
-            if (cost == 0) {
-                System.out.println(Colors.RED + "We ain't got none of those." + Colors.RESET);
-            } else {
-                System.out.print(Colors.YELLOW + "It'll cost you " + cost + " gold. Buy it (y/n)? " + Colors.RESET);
-                String option = scanner.nextLine();
-
-                if (option.equals("y") || option.equals("Y")) {
-                    buyItem(item);
-                }
-            }
-        } else {
-            System.out.println(Colors.GREEN + "What're you lookin' to sell? " + Colors.RESET);
-            System.out.print("You currently have the following items: " + Colors.PURPLE + customer.getInventory() + Colors.RESET);
-            String item = scanner.nextLine();
-            int cost = checkMarketPrice(item, false);
-            if (cost == 0) {
-                System.out.println(Colors.RED + "We don't want none of those." + Colors.RESET);
-            } else {
-                System.out.print(Colors.YELLOW + "It'll get you " + cost + " gold. Sell it (y/n)? " + Colors.RESET);
-                String option = scanner.nextLine();
-
-                if (option.equals("y") || option.equals("Y")) {
-                    sellItem(item);
-                }
-            }
-        }
+//        Scanner scanner = new Scanner(System.in);
+//        if (buyOrSell.equalsIgnoreCase("b")) {
+//            System.out.println("Welcome to the shop! We have the finest wares in town.");
+//            System.out.println(Colors.CYAN + "Currently we have the following items:" + Colors.RESET);
+//            System.out.println(Colors.PURPLE + inventory() + Colors.RESET);
+//            System.out.print(Colors.GREEN + "What're you lookin' to buy? " + Colors.RESET);
+//            String item = scanner.nextLine();
+//            int cost = checkMarketPrice(item, true);
+//            if (cost == 0) {
+//                System.out.println(Colors.RED + "We ain't got none of those." + Colors.RESET);
+//            } else {
+//                System.out.print(Colors.YELLOW + "It'll cost you " + cost + " gold. Buy it (y/n)? " + Colors.RESET);
+//                String option = scanner.nextLine();
+//
+//                if (option.equals("y") || option.equals("Y")) {
+//                    buyItem(item);
+//                }
+//            }
+//        } else {
+//            System.out.println(Colors.GREEN + "What're you lookin' to sell? " + Colors.RESET);
+//            System.out.print("You currently have the following items: " + Colors.PURPLE + customer.getInventory() + Colors.RESET);
+//            String item = scanner.nextLine();
+//            int cost = checkMarketPrice(item, false);
+//            if (cost == 0) {
+//                System.out.println(Colors.RED + "We don't want none of those." + Colors.RESET);
+//            } else {
+//                System.out.print(Colors.YELLOW + "It'll get you " + cost + " gold. Sell it (y/n)? " + Colors.RESET);
+//                String option = scanner.nextLine();
+//
+//                if (option.equals("y") || option.equals("Y")) {
+//                    sellItem(item);
+//                }
+//            }
+//        }
     }
 
     /**
@@ -95,13 +93,14 @@ public class Shop {
      *
      * @param item The item being bought.
      */
-    public void buyItem(String item) {
+    public boolean buyItem(String item) {
         int costOfItem = checkMarketPrice(item, true);
-        if (customer.buyItem(item, costOfItem)) {
-            System.out.println(Colors.GREEN + "Ye' got yerself a " + item + ". Come again soon." + Colors.RESET);
-        } else {
-            System.out.println(Colors.RED + "Hmm, either you don't have enough gold or you've already got one of those!" + Colors.RESET);
-        }
+        return customer.buyItem(item, costOfItem);
+//        if (customer.buyItem(item, costOfItem)) {
+//            System.out.println(Colors.GREEN + "Ye' got yerself a " + item + ". Come again soon." + Colors.RESET);
+//        } else {
+//            System.out.println(Colors.RED + "Hmm, either you don't have enough gold or you've already got one of those!" + Colors.RESET);
+//        }
     }
 
     /**
@@ -109,13 +108,10 @@ public class Shop {
      *
      * @param item The item being sold.
      */
-    public void sellItem(String item) {
+    public boolean sellItem(String item) {
         int buyBackPrice = checkMarketPrice(item, false);
-        if (customer.sellItem(item, buyBackPrice)) {
-            System.out.println(Colors.GREEN + "Pleasure doin' business with you." + Colors.RESET);
-        } else {
-            System.out.println(Colors.RED + "Stop stringin' me along!" + Colors.RESET);
-        }
+        return customer.sellItem(item, buyBackPrice);
+
     }
 
     /**

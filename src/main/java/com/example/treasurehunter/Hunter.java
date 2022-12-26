@@ -154,7 +154,7 @@ public class Hunter {
 
         int index = 0;
 
-        while (printableKit.indexOf(KIT_DELIMITER) != -1) {
+        while (printableKit.contains(KIT_DELIMITER)) {
             index = printableKit.indexOf(KIT_DELIMITER);
             printableKit = printableKit.substring(0, index) + space + printableKit.substring(index + 1);
         }

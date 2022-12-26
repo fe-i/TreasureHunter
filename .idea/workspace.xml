@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="workspace edits">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/shop-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_mac_aarch64_17_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_mac_aarch64_17_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_mac_aarch64_17_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_mac_aarch64_17_0_2.xml" afterDir="false" />
+    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="Set up town shop window">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/ShopController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Hunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Hunter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Mode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Shop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treasurehunter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treasurehunter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/shop-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/shop-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -80,6 +78,15 @@
       <recent name="C:\Users\BT_3W2_12\IdeaProjects\TreasureHunter\src" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.treasurehunter.TreasureHunterApp" />
+      <module name="treasurehunter" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -89,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1671554597948</updated>
       <workItem from="1671556661421" duration="2488000" />
-      <workItem from="1671943480733" duration="1202000" />
+      <workItem from="1671943480733" duration="14825000" />
     </task>
     <task id="LOCAL-00001" summary="We are bad">
       <created>1671557698199</created>
@@ -105,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671900771155</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Set up town shop window">
+      <created>1671944817921</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671944817921</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="workspace edits" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace edits" />
+    <MESSAGE value="Set up town shop window" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set up town shop window" />
   </component>
 </project>

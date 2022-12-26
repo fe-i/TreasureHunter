@@ -30,10 +30,12 @@ public class Mode {
 
     public static double getMarkdown() {
         double markdown;
+        // Higher markdown, higher sell price
         switch (currentMode) {
-            case EASY_MODE -> markdown = 0.2;
-            case NORMAL_MODE -> markdown = 0.4;
-            case HARD_MODE -> markdown = 0.6;
+            case EASY_MODE -> markdown = 0.8;
+            case NORMAL_MODE -> markdown = 0.6;
+            case HARD_MODE -> markdown = 0.4;
+            case DEV_MODE -> markdown = 1;
             default -> markdown = 0.0;
         }
         return markdown;
