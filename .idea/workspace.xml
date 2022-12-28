@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="Set up town shop window">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_mac_aarch64_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_17_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_mac_aarch64_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_17_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_mac_aarch64_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_win_17_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_mac_aarch64_17_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_17_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Colors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Colors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Hunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Hunter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Mode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Shop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Terrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Town.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Town.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treasurehunter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treasurehunter.iml" afterDir="false" />
-    </list>
+    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="Set up town shop window" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,9 +62,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
@@ -100,6 +84,7 @@
       <updated>1671554597948</updated>
       <workItem from="1671556661421" duration="2488000" />
       <workItem from="1671943480733" duration="14825000" />
+      <workItem from="1672209943406" duration="156000" />
     </task>
     <task id="LOCAL-00001" summary="We are bad">
       <created>1671557698199</created>
