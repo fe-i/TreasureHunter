@@ -2,6 +2,7 @@ package com.example.treasurehunter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
@@ -29,6 +30,12 @@ public class ShopController {
     public OutputInterface outputSell = (info) -> outputFieldSell.setText(info);
     @FXML
     private RadioButton sellOption1, sellOption2, sellOption3, sellOption4, sellOption5, sellOption6;
+    @FXML
+    private RadioButton buyOption1, buyOption2, buyOption3, buyOption4, buyOption5, buyOption6;
+    @FXML
+    private ProgressBar coinsSell;
+    @FXML
+    private ProgressBar coinsBuy;
 
     @FXML
     protected void onPurchaseClick() {
@@ -59,7 +66,7 @@ public class ShopController {
                     if (shop.buyItem(shopChoiceValue)) {
                         outputBuy.output("Ye' got yerself a " + shopChoiceValue + ". Come again soon.");
                     } else {
-                        outputBuy.output("Hmm, either you don't have enough gold or you've already got one of those!");
+                        outputBuy.output("Hmm, you don't have enough gold!");
                     }
                     buyButton.setText("Buy");
                     updateShop();
@@ -113,12 +120,22 @@ public class ShopController {
     }
 
     public void updateShop() {
-        RadioButton[] buttons = new RadioButton[]{sellOption1, sellOption2, sellOption3, sellOption4, sellOption5, sellOption6};
+        RadioButton[] sellButtons = new RadioButton[]{sellOption1, sellOption2, sellOption3, sellOption4, sellOption5, sellOption6};
+        RadioButton[] buyButtons = new RadioButton[]{buyOption1, buyOption2, buyOption3, buyOption4, buyOption5, buyOption6};
 
         for (int i = 0; i < 6; i++) {
-            RadioButton button = buttons[i];
+            RadioButton button = sellButtons[i];
             button.setSelected(false);
             button.setDisable(!hunter.getInventory().contains(button.getText()));
         }
+
+        for (int i = 0; i < 6; i++) {
+            RadioButton button = buyButtons[i];
+            button.setSelected(false);
+            button.setDisable(hunter.getInventory().contains(button.getText()));
+        }
+
+        coinsSell.setProgress(hunter.getGold() / 100.0);
+        coinsBuy.setProgress(hunter.getGold() / 100.0);
     }
 }
