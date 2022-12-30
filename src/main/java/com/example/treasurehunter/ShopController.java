@@ -36,6 +36,7 @@ public class ShopController {
     private ProgressBar coinsSell;
     @FXML
     private ProgressBar coinsBuy;
+    private OutputInterface invOutput;
 
     @FXML
     protected void onPurchaseClick() {
@@ -119,6 +120,10 @@ public class ShopController {
         this.hunter = hunter;
     }
 
+    public void setInvOutput(OutputInterface invOutput) {
+        this.invOutput = invOutput;
+    }
+
     public void updateShop() {
         RadioButton[] sellButtons = new RadioButton[]{sellOption1, sellOption2, sellOption3, sellOption4, sellOption5, sellOption6};
         RadioButton[] buyButtons = new RadioButton[]{buyOption1, buyOption2, buyOption3, buyOption4, buyOption5, buyOption6};
@@ -137,5 +142,6 @@ public class ShopController {
 
         coinsSell.setProgress(hunter.getGold() / 100.0);
         coinsBuy.setProgress(hunter.getGold() / 100.0);
+        invOutput.output(String.join("\r\n", hunter.getInventory().split(" ")));
     }
 }

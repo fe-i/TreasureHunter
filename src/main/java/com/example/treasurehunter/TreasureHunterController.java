@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -19,13 +21,16 @@ public class TreasureHunterController {
     @FXML
     private Text outputField;
     @FXML
-    public OutputInterface output = (info) -> {
-        outputField.setText(info);
-    };
+    public OutputInterface output = (info) -> outputField.setText(info);
     @FXML
     private Text townInfo;
     @FXML
     private Text inventory;
+    @FXML
+    public OutputInterface invOutput = (info) -> {
+        if (info.length() > 0) inventory.setText(info);
+        else inventory.setText("Your inventory is empty!");
+    };
     @FXML
     private ProgressBar coins;
     @FXML
@@ -73,7 +78,6 @@ public class TreasureHunterController {
             Mode.setCurrentMode(Mode.EASY_MODE);
         }
 
-        System.out.println("Worse");
         //System.out.println("Starting on " + Colors.BLUE + Mode.getCurrentMode() + Colors.RESET + " mode.");
 
         output.output("Welcome " + name + "!\nStarting the game in " + Mode.getCurrentMode() + " mode.");
@@ -103,6 +107,7 @@ public class TreasureHunterController {
             ShopController controller = loader.getController();
             controller.setShop(shop);
             controller.setHunter(hunter);
+            controller.setInvOutput(invOutput);
             controller.updateShop();
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,25 +138,24 @@ public class TreasureHunterController {
 
     @FXML
     protected void onTroubleClick() {
+        System.out.println("BAD! MAKE PRINTMESSAGE OUTPUT INDIVIDUALLY");
         boolean bankrupt = currentTown.lookForTrouble();
-        System.out.println("Baddddd");
         output.output(currentTown.getLatestNews());
         coins.setProgress(hunter.getGold() / 100.0);
         if (bankrupt) {
-            output.output("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
-            /* END GAME */
+            //output.output("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
+            endGame("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate...");
         }
     }
 
     @FXML
     protected void onHuntClick() {
-        System.out.println(hunter.getInventory());
         if (!currentTown.getHasBeenSearched()) {
             boolean hasAllTreasure = hunter.addTreasure(output, currentTown.getTreasure());
             currentTown.setHasBeenSearched(true);
             if (hasAllTreasure) {
-                output.output("You have successfully collected all 3 treasures! You win!");
-                /* END GAME */
+                //output.output("You have successfully collected all 3 treasures! You win!");
+                endGame("You have successfully collected all 3 treasures! You win!");
             }
         } else output.output("You have already searched this town.");
     }
@@ -174,10 +178,19 @@ public class TreasureHunterController {
         } else output.output("You're unable to leave this town.");
     }
 
+    public void endGame(String message) {
+        Alert alert = new Alert(Alert.AlertType.NONE, "Game Over", ButtonType.CLOSE);
+        alert.setTitle("Game Over");
+        alert.setContentText(message);
+        alert.showAndWait();
+        System.exit(0);
+    }
+
     @FXML
     public void initialize() {
         welcomePlayer();
         enterTown();
         townInfo.setText(currentTown.toString());
+        invOutput.output("");
     }
 }

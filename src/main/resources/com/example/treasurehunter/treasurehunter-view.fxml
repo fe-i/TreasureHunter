@@ -52,7 +52,7 @@
                           <children>
                               <Text fx:id="outputField" fill="WHITE" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="hello" textAlignment="LEFT" textOrigin="TOP" wrappingWidth="227.92356872558594">
                                   <font>
-                                      <Font name="Helvetica" size="31.0" />
+                                      <Font name="Helvetica" size="27.0" />
                                   </font>
                               </Text>
                           </children>
