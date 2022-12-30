@@ -6,10 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class TreasureHunterController {
     @FXML
@@ -24,6 +28,8 @@ public class TreasureHunterController {
     private Text inventory;
     @FXML
     private ProgressBar coins;
+    @FXML
+    private ImageView background;
 
 
     private Town currentTown;
@@ -151,11 +157,20 @@ public class TreasureHunterController {
     }
 
     @FXML
-    protected void onMoveClick() {
+    protected void onMoveClick() throws URISyntaxException {
         if (Mode.isEasy() || Mode.isDev() || currentTown.leaveTown()) {
             enterTown();
             townInfo.setText(currentTown.toString());
             output.output(currentTown.getLatestNews());
+
+            Image newBackground = new Image(
+                    Objects.requireNonNull(
+                            getClass().getResource(
+                                    currentTown.getTerrain().getTerrainName().toLowerCase() + ".png"
+                            )
+                    ).toURI().toString()
+            );
+            background.setImage(newBackground);
         } else output.output("You're unable to leave this town.");
     }
 

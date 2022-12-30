@@ -43,6 +43,10 @@ public class Town {
         return printMessage;
     }
 
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
     public Treasure getTreasure() {
         return treasure;
     }
