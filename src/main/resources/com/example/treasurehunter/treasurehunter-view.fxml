@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
@@ -48,9 +47,9 @@
                               <Button mnemonicParsing="false" onAction="#onMoveClick" prefHeight="40.0" prefWidth="180.0" text="Move To Another Town" />
                           </children>
                       </FlowPane>
-                      <TextFlow accessibleText="hellos" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: b01328;" textAlignment="LEFT" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                      <TextFlow accessibleText="hellos" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: b01328; -fx-background-color: ff5454; -fx-border-width: 10;" textAlignment="LEFT" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                           <children>
-                              <Text fx:id="outputField" fill="WHITE" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="hello" textAlignment="LEFT" textOrigin="TOP" wrappingWidth="227.92356872558594">
+                              <Text fx:id="outputField" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="hello" textAlignment="LEFT" textOrigin="TOP" wrappingWidth="227.92356872558594">
                                   <font>
                                       <Font name="Helvetica" size="27.0" />
                                   </font>
@@ -102,7 +101,11 @@
                               <String fx:value="yellow-bar" />
                           </styleClass>
                       </ProgressBar>
-                      <Circle fill="DODGERBLUE" radius="43.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
+                  <ImageView preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@character.png" />
+                     </image>
+                  </ImageView>
                   </children>
               </GridPane>
          </children>

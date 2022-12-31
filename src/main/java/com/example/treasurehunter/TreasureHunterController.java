@@ -90,7 +90,7 @@ public class TreasureHunterController {
     /**
      * Creates a new town and adds the Hunter to it.
      */
-    public void enterTown() {
+    public void enterTown() throws URISyntaxException {
         double markdown = Mode.getMarkdown();
         double toughness = Mode.getToughness();
 
@@ -123,6 +123,15 @@ public class TreasureHunterController {
         // constructor for Town, but this illustrates another way to associate
         // an object with an object of a different class
         currentTown.hunterArrives(hunter);
+
+        Image newBackground = new Image(
+                Objects.requireNonNull(
+                        getClass().getResource(
+                                currentTown.getTerrain().getTerrainName().toLowerCase() + ".png"
+                        )
+                ).toURI().toString()
+        );
+        background.setImage(newBackground);
     }
 
     @FXML
@@ -167,14 +176,7 @@ public class TreasureHunterController {
             townInfo.setText(currentTown.toString());
             output.output(currentTown.getLatestNews());
 
-            Image newBackground = new Image(
-                    Objects.requireNonNull(
-                            getClass().getResource(
-                                    currentTown.getTerrain().getTerrainName().toLowerCase() + ".png"
-                            )
-                    ).toURI().toString()
-            );
-            background.setImage(newBackground);
+
         } else output.output("You're unable to leave this town.");
     }
 
@@ -187,7 +189,7 @@ public class TreasureHunterController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws URISyntaxException {
         welcomePlayer();
         enterTown();
         townInfo.setText(currentTown.toString());

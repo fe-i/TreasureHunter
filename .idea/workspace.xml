@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="Finish up shop">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/desert.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/jungle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/mountains.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/ocean.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/plains.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/schools.png" afterDir="false" />
+    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="UI changes (positive?)">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/badguy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/bronze.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/character.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/coin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/folwellium.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/sand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/silver.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Town.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/Town.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/treasurehunter-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/treasurehunter-view.fxml" afterDir="false" />
     </list>
@@ -136,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672295310266</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="UI changes (positive?)">
+      <created>1672388392340</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672388392340</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +177,7 @@
     <MESSAGE value="workspace edits" />
     <MESSAGE value="Set up town shop window" />
     <MESSAGE value="Finish up shop" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish up shop" />
+    <MESSAGE value="UI changes (positive?)" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI changes (positive?)" />
   </component>
 </project>
