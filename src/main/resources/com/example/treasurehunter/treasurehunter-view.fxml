@@ -106,6 +106,23 @@
                         <Image url="@character.png" />
                      </image>
                   </ImageView>
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2; -fx-max-width: fit-content;" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                     <children>
+                        <Text fx:id="numCoins" strokeType="OUTSIDE" strokeWidth="0.0" text="700">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
+                        <ImageView>
+                           <image>
+                              <Image url="@coin.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <GridPane.margin>
+                        <Insets right="5.0" top="35.0" />
+                     </GridPane.margin>
+                  </FlowPane>
                   </children>
               </GridPane>
          </children>

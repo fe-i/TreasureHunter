@@ -27,12 +27,19 @@ public class TreasureHunterController {
     @FXML
     private Text inventory;
     @FXML
+    private Text numCoins;
+    @FXML
+    private ProgressBar coins;
+    @FXML
     public OutputInterface invOutput = (info) -> {
         if (info.length() > 0) inventory.setText(info);
         else inventory.setText("Your inventory is empty!");
     };
     @FXML
-    private ProgressBar coins;
+    public OutputInterface setNumCoins = (info) -> {
+        numCoins.setText(info);
+        coins.setProgress(Integer.parseInt(info) / 100.0);
+    };
     @FXML
     private ImageView background;
 
@@ -84,7 +91,7 @@ public class TreasureHunterController {
 
         // set hunter instance variable
         hunter = new Hunter(name, Mode.getStartingGold());
-        coins.setProgress(hunter.getGold() / 100.0);
+        setNumCoins.output(String.valueOf(hunter.getGold()));
     }
 
     /**
@@ -108,6 +115,7 @@ public class TreasureHunterController {
             controller.setShop(shop);
             controller.setHunter(hunter);
             controller.setInvOutput(invOutput);
+            controller.setSetNumCoins(setNumCoins);
             controller.updateShop();
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,7 +158,7 @@ public class TreasureHunterController {
         System.out.println("BAD! MAKE PRINTMESSAGE OUTPUT INDIVIDUALLY");
         boolean bankrupt = currentTown.lookForTrouble();
         output.output(currentTown.getLatestNews());
-        coins.setProgress(hunter.getGold() / 100.0);
+        setNumCoins.output(String.valueOf(hunter.getGold()));
         if (bankrupt) {
             //output.output("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
             endGame("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate...");
@@ -194,5 +202,6 @@ public class TreasureHunterController {
         enterTown();
         townInfo.setText(currentTown.toString());
         invOutput.output("");
+
     }
 }

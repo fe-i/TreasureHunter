@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -71,6 +73,23 @@
                               <Insets bottom="10.0" left="10.0" />
                            </padding>
                         </ProgressBar>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2; -fx-max-width: fit-content;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <children>
+                              <Text fx:id="numCoinsBuy" strokeType="OUTSIDE" strokeWidth="0.0" text="700">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </Text>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@coin.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="40.0" right="10.0" />
+                           </GridPane.margin>
+                        </FlowPane>
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -130,6 +149,23 @@
                               <Insets bottom="10.0" left="10.0" />
                            </padding>
                         </ProgressBar>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2; -fx-max-width: fit-content;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <children>
+                              <Text fx:id="numCoinsSell" strokeType="OUTSIDE" strokeWidth="0.0" text="700">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </Text>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@coin.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="40.0" right="10.0" />
+                           </GridPane.margin>
+                        </FlowPane>
                      </children>
                   </GridPane>
                </children></AnchorPane>
