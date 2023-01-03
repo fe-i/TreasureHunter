@@ -10,7 +10,6 @@ public class Town {
     private Hunter hunter;
     private Shop shop;
     private Terrain terrain;
-    private String printMessage;
     private boolean toughTown;
     private Treasure treasure;
     private boolean hasBeenSearched;
@@ -41,10 +40,6 @@ public class Town {
         hasBeenSearched = false;
     }
 
-    public String getLatestNews() {
-        return printMessage;
-    }
-
     public Terrain getTerrain() {
         return terrain;
     }
@@ -68,13 +63,14 @@ public class Town {
      */
     public String hunterArrives(Hunter hunter) {
         this.hunter = hunter;
-        printMessage = "Welcome to town, " + hunter.getName() + ".";
+        String msg = "Welcome to town, " + hunter.getName() + ".";
 
         if (toughTown) {
-            printMessage += "\nIt's pretty rough around here, so watch yourself.";
+            msg += "\nIt's pretty rough around here, so watch yourself.";
         } else {
-            printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
+            msg += "\nWe're just a sleepy little town with mild mannered folk.";
         }
+        return msg;
     }
 
     /**
@@ -83,6 +79,7 @@ public class Town {
      * @return true if the Hunter was able to leave town.
      */
     public boolean leaveTown() {
+        String printMessage = "";
         boolean canLeaveTown = terrain.canCrossTerrain(hunter);
         if (canLeaveTown) {
             String item = terrain.getNeededItem();
@@ -101,11 +98,8 @@ public class Town {
         return false;
     }
 
-    public void enterShop(String choice) {
-        shop.enter(hunter, choice);
-    }
-
-    private void hunterWinsMessage() {
+    private String hunterWinsMessage() {
+        String printMessage = "";
         switch (terrain.getTerrainName()) {
             case "Mountains" ->
                     printMessage += "We have a saying in the mountains: 'Alright wow ok you win gosh', here, take my gold.";
@@ -117,6 +111,7 @@ public class Town {
             case "Schools" -> printMessage += "I hope you cherish your knowledge as much as you cherish my gold.";
             default -> printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
         }
+        return printMessage;
     }
 
     private String hunterLosesMessage() {
@@ -153,11 +148,11 @@ public class Town {
             output.output(printMessage);
             return false;
         } else {
-            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            printMessage = "You want trouble, stranger! You got it!\nOof! Umph! Ow!\n\n";
             int goldDiff = Mode.isDev() ? 100 : (int) (Math.random() * 10) + 1;
             if (Math.random() > noTroubleChance || Mode.isDev()) {
-                hunterWinsMessage();
-                printMessage += "\nYou won the brawl and receive " + goldDiff + " gold.";
+                printMessage += hunterWinsMessage();
+                printMessage += "\n\nYou won the brawl and receive " + goldDiff + " gold.";
                 hunter.changeGold(goldDiff);
                 output.output(printMessage);
                 return false;

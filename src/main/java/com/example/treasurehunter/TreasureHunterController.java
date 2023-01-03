@@ -1,5 +1,9 @@
 package com.example.treasurehunter;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -27,6 +32,8 @@ public class TreasureHunterController {
     private Text townInfo;
     @FXML
     private Text inventory;
+    @FXML
+    private ImageView bronzeIcon, silverIcon, folwelliumIcon;
     @FXML
     private Text numCoins;
     @FXML
@@ -44,12 +51,16 @@ public class TreasureHunterController {
     @FXML
     private ImageView background;
 
-
     private Town currentTown;
     private Shop shop;
     private Parent shopRoot;
     private Scene shopScene;
     private Hunter hunter;
+
+    @FXML
+    private ImageView hunterImage;
+    @FXML
+    private ImageView badGuyImage;
 
     public void welcomePlayer() {
         TextInputDialog nameDialog = new TextInputDialog("Hunter");
@@ -87,8 +98,7 @@ public class TreasureHunterController {
         }
 
         //System.out.println("Starting on " + Colors.BLUE + Mode.getCurrentMode() + Colors.RESET + " mode.");
-
-        output.output("Welcome " + name + "!\nStarting the game in " + Mode.getCurrentMode() + " mode.");
+        output.output("Starting the game in " + Mode.getCurrentMode() + " mode.");
 
         // set hunter instance variable
         hunter = new Hunter(name, Mode.getStartingGold());
@@ -125,13 +135,14 @@ public class TreasureHunterController {
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
         // object in other methods of this class
-        currentTown = new Town(shop, toughness);
+        currentTown = new Town(shop, toughness, output);
 
         // calling the hunterArrives method, which takes the Hunter
         // as a parameter; note this also could have been done in the
         // constructor for Town, but this illustrates another way to associate
         // an object with an object of a different class
-        currentTown.hunterArrives(hunter);
+        String arriveMsg = currentTown.hunterArrives(hunter);
+        output.output(outputField.getText() + "\n" + arriveMsg);
 
         Image newBackground = new Image(
                 Objects.requireNonNull(
@@ -157,8 +168,39 @@ public class TreasureHunterController {
     @FXML
     protected void onTroubleClick() {
         System.out.println("BAD! MAKE PRINTMESSAGE OUTPUT INDIVIDUALLY");
+        FadeTransition BGin = new FadeTransition(Duration.millis(1000), badGuyImage);
+        BGin.setFromValue(0);
+        BGin.setToValue(1);
+
+        FadeTransition BGout = new FadeTransition(Duration.millis(1000), badGuyImage);
+        BGout.setFromValue(1);
+        BGout.setToValue(0);
+
+        RotateTransition BGfall = new RotateTransition(Duration.millis(500), badGuyImage);
+        BGfall.setByAngle(-90);
+
+        RotateTransition BGrise = new RotateTransition(Duration.millis(500), hunterImage);
+        BGrise.setByAngle(-90);
+
+        RotateTransition GGfall = new RotateTransition(Duration.millis(500), hunterImage);
+        GGfall.setByAngle(90);
+
+        RotateTransition GGrise = new RotateTransition(Duration.millis(500), hunterImage);
+        GGrise.setByAngle(-90);
+
+        SequentialTransition seqTransition = new SequentialTransition (
+                BGin,
+                new PauseTransition(Duration.millis(1000)),
+                BGfall,
+                GGfall,
+                new PauseTransition(Duration.millis(1000)),
+                BGout,
+                GGrise,
+                BGrise
+        );
+
+        seqTransition.play();
         boolean bankrupt = currentTown.lookForTrouble();
-        output.output(currentTown.getLatestNews());
         setNumCoins.output(String.valueOf(hunter.getGold()));
         if (bankrupt) {
             //output.output("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
@@ -171,6 +213,14 @@ public class TreasureHunterController {
         if (!currentTown.getHasBeenSearched()) {
             boolean hasAllTreasure = hunter.addTreasure(output, currentTown.getTreasure());
             currentTown.setHasBeenSearched(true);
+            String treasureList = hunter.getTreasures().toLowerCase();
+            if (treasureList.length() > 0) {
+                ColorAdjust brighten = new ColorAdjust();
+                brighten.setBrightness(0);
+                if (treasureList.contains("bronze")) bronzeIcon.setEffect(brighten);
+                if (treasureList.contains("silver")) silverIcon.setEffect(brighten);
+                if (treasureList.contains("folwellium")) folwelliumIcon.setEffect(brighten);
+            }
             if (hasAllTreasure) {
                 //output.output("You have successfully collected all 3 treasures! You win!");
                 endGame("You have successfully collected all 3 treasures! You win!");
@@ -184,7 +234,7 @@ public class TreasureHunterController {
             enterTown();
             townInfo.setText(currentTown.toString());
 
-        } else output.output("You're unable to leave this town.");
+        } else output.output("You're unable to leave this town. You need a " + currentTown.getTerrain().getNeededItem() + ".");
     }
 
     public void endGame(String message) {

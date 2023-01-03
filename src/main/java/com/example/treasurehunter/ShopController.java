@@ -11,7 +11,6 @@ public class ShopController {
     private Shop shop;
     private Hunter hunter;
 
-
     @FXML
     private ToggleGroup buyOption;
     @FXML

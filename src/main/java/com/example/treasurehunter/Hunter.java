@@ -35,6 +35,10 @@ public class Hunter {
         return inventory;
     }
 
+    public String getTreasures() {
+        return treasures;
+    }
+
     public int getGold() {
         return gold;
     }
