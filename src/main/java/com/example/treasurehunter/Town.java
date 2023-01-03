@@ -14,6 +14,7 @@ public class Town {
     private boolean toughTown;
     private Treasure treasure;
     private boolean hasBeenSearched;
+    private OutputInterface output;
 
     //Constructor
 
@@ -23,9 +24,10 @@ public class Town {
      * @param shop      The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness) {
+    public Town(Shop shop, double toughness, OutputInterface output) {
         this.shop = shop;
         this.terrain = getNewTerrain();
+        this.output = output;
 
         // the hunter gets set using the hunterArrives method, which
         // gets called from a client class
@@ -64,7 +66,7 @@ public class Town {
      *
      * @param hunter The arriving Hunter.
      */
-    public void hunterArrives(Hunter hunter) {
+    public String hunterArrives(Hunter hunter) {
         this.hunter = hunter;
         printMessage = "Welcome to town, " + hunter.getName() + ".";
 
@@ -89,9 +91,13 @@ public class Town {
                 hunter.removeItemFromKit(item);
                 printMessage += "\nUnfortunately, your " + item + " broke.";
             }
+
+            output.output(printMessage);
             return true;
         }
         printMessage = "You can't leave town, " + hunter.getName() + ". You don't have a " + terrain.getNeededItem() + ".";
+
+        output.output(printMessage);
         return false;
     }
 
@@ -113,7 +119,8 @@ public class Town {
         }
     }
 
-    private void hunterLosesMessage() {
+    private String hunterLosesMessage() {
+        String printMessage = "";
         switch (terrain.getTerrainName()) {
             case "Mountains" -> printMessage += "Now scram! Outta my mountains! But like gimme ur gold first!";
             case "Ocean" -> printMessage += "Swim away little fish. Leave your gold too!";
@@ -124,6 +131,7 @@ public class Town {
             case "Schools" -> printMessage += "Pay your tuition and scram!!!";
             default -> printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
         }
+        return printMessage;
     }
 
     /**
@@ -132,6 +140,7 @@ public class Town {
      * The tougher the town, the easier it is to find a fight, and the harder it is to win one.
      */
     public boolean lookForTrouble() {
+        String printMessage = "";
         double noTroubleChance;
         if (toughTown) {
             noTroubleChance = 0.66;
@@ -141,6 +150,7 @@ public class Town {
 
         if (Math.random() > noTroubleChance && !Mode.isDev()) {
             printMessage = "You couldn't find any trouble";
+            output.output(printMessage);
             return false;
         } else {
             printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
@@ -149,11 +159,13 @@ public class Town {
                 hunterWinsMessage();
                 printMessage += "\nYou won the brawl and receive " + goldDiff + " gold.";
                 hunter.changeGold(goldDiff);
+                output.output(printMessage);
                 return false;
             } else {
-                hunterLosesMessage();
-                printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
+                printMessage += hunterLosesMessage();
+                printMessage += "\n\nYou lost the brawl and pay " + goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
+                output.output(printMessage);
                 return hunter.getGold() == 0;
             }
         }

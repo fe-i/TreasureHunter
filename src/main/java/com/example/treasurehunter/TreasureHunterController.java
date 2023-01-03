@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -110,7 +111,7 @@ public class TreasureHunterController {
         try {
             FXMLLoader loader = new FXMLLoader(TreasureHunterController.class.getResource("shop-view.fxml"));
             shopRoot = loader.load();
-            shopScene = new Scene(shopRoot, 780, 450);
+            shopScene = new Scene(shopRoot, 600, 400);
             ShopController controller = loader.getController();
             controller.setShop(shop);
             controller.setHunter(hunter);
@@ -182,8 +183,6 @@ public class TreasureHunterController {
         if (Mode.isEasy() || Mode.isDev() || currentTown.leaveTown()) {
             enterTown();
             townInfo.setText(currentTown.toString());
-            output.output(currentTown.getLatestNews());
-
 
         } else output.output("You're unable to leave this town.");
     }
@@ -203,5 +202,12 @@ public class TreasureHunterController {
         townInfo.setText(currentTown.toString());
         invOutput.output("");
 
+
+        ColorAdjust blackout = new ColorAdjust();
+        blackout.setBrightness(-1.0);
+
+        bronzeIcon.setEffect(blackout);
+        silverIcon.setEffect(blackout);
+        folwelliumIcon.setEffect(blackout);
     }
 }
