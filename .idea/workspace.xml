@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="A bunch of art">
+    <list default="true" id="f3c96e6f-bad3-4693-b9d2-97e54a7b3b96" name="Changes" comment="Add numCoins">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/shop-background.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/treasurehunter/TreasureHunterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/coin.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/coin.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/shop-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/shop-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/treasurehunter-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/treasurehunter/treasurehunter-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672471285011</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add numCoins">
+      <created>1672607689665</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1672607689665</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +186,7 @@
     <MESSAGE value="Finish up shop" />
     <MESSAGE value="UI changes (positive?)" />
     <MESSAGE value="A bunch of art" />
-    <option name="LAST_COMMIT_MESSAGE" value="A bunch of art" />
+    <MESSAGE value="Add numCoins" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add numCoins" />
   </component>
 </project>

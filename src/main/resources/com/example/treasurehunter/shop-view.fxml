@@ -23,6 +23,11 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
+                  <ImageView fitHeight="400.0" fitWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@shop-background.png" />
+                     </image>
+                  </ImageView>
                   <GridPane prefHeight="370.0" prefWidth="600.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -49,7 +54,7 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Text>
-                        <FlowPane fx:id="werthy" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" vgap="10.0" GridPane.rowIndex="1">
+                        <FlowPane fx:id="werthy" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="225.0" prefWidth="125.0" style="-fx-background-color: #ecae78; -fx-border-color: #795548; -fx-border-width: 5;" vgap="10.0" GridPane.rowIndex="1">
                            <children>
                               <RadioButton fx:id="buyOption1" mnemonicParsing="false" text="Water">
                                  <toggleGroup>
@@ -73,7 +78,7 @@
                               <Insets bottom="10.0" left="10.0" />
                            </padding>
                         </ProgressBar>
-                        <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2; -fx-max-width: fit-content;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #edc6a5; -fx-border-color: #795548; -fx-border-width: 2; -fx-max-width: fit-content;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <children>
                               <Text fx:id="numCoinsBuy" strokeType="OUTSIDE" strokeWidth="0.0" text="700">
                                  <font>
@@ -99,6 +104,11 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
+                  <ImageView fitHeight="400.0" fitWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@shop-background.png" />
+                     </image>
+                  </ImageView>
                   <GridPane prefHeight="370.0" prefWidth="600.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -125,7 +135,7 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </Text>
-                        <FlowPane fx:id="werthy1" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" vgap="10.0" GridPane.rowIndex="1">
+                        <FlowPane fx:id="werthy1" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="225.0" prefWidth="125.0" style="-fx-background-color: #ecae78; -fx-border-color: #795548; -fx-border-width: 5;" vgap="10.0" GridPane.rowIndex="1">
                            <children>
                               <RadioButton fx:id="sellOption1" mnemonicParsing="false" text="Water">
                                  <toggleGroup>
@@ -149,7 +159,7 @@
                               <Insets bottom="10.0" left="10.0" />
                            </padding>
                         </ProgressBar>
-                        <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2; -fx-max-width: fit-content;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="76.0" style="-fx-background-color: #edc6a5; -fx-border-color: #795548; -fx-border-width: 2; -fx-max-width: fit-content;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <children>
                               <Text fx:id="numCoinsSell" strokeType="OUTSIDE" strokeWidth="0.0" text="700">
                                  <font>
