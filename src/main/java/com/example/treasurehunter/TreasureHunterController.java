@@ -35,16 +35,16 @@ public class TreasureHunterController {
     @FXML
     private Text inventory;
     @FXML
+    public OutputInterface invOutput = (info) -> {
+        if (info.length() > 0) inventory.setText(info);
+        else inventory.setText("Your inventory is empty!");
+    };
+    @FXML
     private ImageView bronzeIcon, silverIcon, folwelliumIcon;
     @FXML
     private Text numCoins;
     @FXML
     private ProgressBar coins;
-    @FXML
-    public OutputInterface invOutput = (info) -> {
-        if (info.length() > 0) inventory.setText(info);
-        else inventory.setText("Your inventory is empty!");
-    };
     @FXML
     public OutputInterface setNumCoins = (info) -> {
         numCoins.setText(info);
@@ -64,6 +64,21 @@ public class TreasureHunterController {
     private ImageView hunterImage;
     @FXML
     private ImageView badGuyImage;
+    @FXML
+    private OutputInterface numCoinsBuy;
+    @FXML
+    private OutputInterface numCoinsSell;
+
+    public void updateCoins() {
+        numCoinsBuy.output(String.valueOf(hunter.getGold()));
+        numCoinsSell.output(String.valueOf(hunter.getGold()));
+        setNumCoins.output(String.valueOf(hunter.getGold()));
+    }
+
+    public void initializeShopCoins(OutputInterface numCoinsBuy, OutputInterface numCoinsSell) {
+        this.numCoinsBuy = numCoinsBuy;
+        this.numCoinsSell = numCoinsSell;
+    }
 
     public void welcomePlayer() {
         TextInputDialog nameDialog = new TextInputDialog("Hunter");
@@ -105,7 +120,6 @@ public class TreasureHunterController {
 
         // set hunter instance variable
         hunter = new Hunter(name, Mode.getStartingGold());
-        setNumCoins.output(String.valueOf(hunter.getGold()));
     }
 
     /**
@@ -131,6 +145,8 @@ public class TreasureHunterController {
             controller.setInvOutput(invOutput);
             controller.setSetNumCoins(setNumCoins);
             controller.updateShop();
+            initializeShopCoins(controller.setBuyCoins, controller.setSellCoins);
+            updateCoins();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -170,7 +186,7 @@ public class TreasureHunterController {
 
     @FXML
     protected void onTroubleClick() {
-        if(isFighting) return;
+        if (isFighting) return;
 
         isFighting = true;
         int troubleCode = currentTown.lookForTrouble();
@@ -195,7 +211,7 @@ public class TreasureHunterController {
         RotateTransition GGrise = new RotateTransition(Duration.millis(500), hunterImage);
         GGrise.setByAngle(-90);
 
-        SequentialTransition winAnim = new SequentialTransition (
+        SequentialTransition winAnim = new SequentialTransition(
                 BGin,
                 new PauseTransition(Duration.millis(1000)),
                 BGfall,
@@ -204,7 +220,7 @@ public class TreasureHunterController {
                 BGrise
         );
 
-        SequentialTransition loseAnim = new SequentialTransition (
+        SequentialTransition loseAnim = new SequentialTransition(
                 BGin,
                 new PauseTransition(Duration.millis(1000)),
                 GGfall,
@@ -223,12 +239,11 @@ public class TreasureHunterController {
         winAnim.setOnFinished(onEnd);
         loseAnim.setOnFinished(onEnd);
 
-        if(troubleCode == 201) winAnim.play();
-        else if(troubleCode >= 400) loseAnim.play();
-        else isFighting=false;
+        if (troubleCode == 201) winAnim.play();
+        else if (troubleCode >= 400) loseAnim.play();
+        else isFighting = false;
 
-
-        setNumCoins.output(String.valueOf(hunter.getGold()));
+        updateCoins();
         if (troubleCode == 401) {
             // Bankrupt
             //output.output("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
@@ -262,7 +277,8 @@ public class TreasureHunterController {
             enterTown();
             townInfo.setText(currentTown.toString());
 
-        } else output.output("You're unable to leave this town. You need a " + currentTown.getTerrain().getNeededItem() + ".");
+        } else
+            output.output("You're unable to leave this town. You need a " + currentTown.getTerrain().getNeededItem() + ".");
     }
 
     public void endGame(String message) {

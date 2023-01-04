@@ -17,8 +17,6 @@ public class TreasureHunterApp extends Application {
         stage.setTitle("Treasure Hunter");
         stage.setScene(scene);
         stage.show();
-
-
     }
 
     public static void main(String[] args) {

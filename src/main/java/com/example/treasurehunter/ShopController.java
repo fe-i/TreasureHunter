@@ -38,8 +38,14 @@ public class ShopController {
     @FXML
     private Text numCoinsBuy;
     @FXML
+    public OutputInterface setBuyCoins = (info) -> numCoinsBuy.setText(info);
+    @FXML
     private Text numCoinsSell;
+    @FXML
+    public OutputInterface setSellCoins = (info) -> numCoinsSell.setText(info);
+    @FXML
     private OutputInterface invOutput;
+    @FXML
     private OutputInterface setNumCoins;
 
     @FXML
@@ -127,7 +133,8 @@ public class ShopController {
     public void setInvOutput(OutputInterface invOutput) {
         this.invOutput = invOutput;
     }
-    public void setSetNumCoins(OutputInterface setNumCoins){
+
+    public void setSetNumCoins(OutputInterface setNumCoins) {
         this.setNumCoins = setNumCoins;
     }
 
@@ -147,10 +154,10 @@ public class ShopController {
             button.setDisable(hunter.getInventory().contains(button.getText()));
         }
 
+        coinsBuy.setProgress(hunter.getGold() / 100.0);
         coinsSell.setProgress(hunter.getGold() / 100.0);
         numCoinsBuy.setText(String.valueOf(hunter.getGold()));
         numCoinsSell.setText(String.valueOf(hunter.getGold()));
-        coinsBuy.setProgress(hunter.getGold() / 100.0);
         invOutput.output(String.join("\r\n", hunter.getInventory().split(" ")));
         setNumCoins.output(String.valueOf(hunter.getGold()));
     }
