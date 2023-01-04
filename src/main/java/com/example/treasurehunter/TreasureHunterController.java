@@ -4,6 +4,8 @@ import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.SequentialTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,6 +58,7 @@ public class TreasureHunterController {
     private Parent shopRoot;
     private Scene shopScene;
     private Hunter hunter;
+    private boolean isFighting;
 
     @FXML
     private ImageView hunterImage;
@@ -167,7 +170,11 @@ public class TreasureHunterController {
 
     @FXML
     protected void onTroubleClick() {
-        System.out.println("BAD! MAKE PRINTMESSAGE OUTPUT INDIVIDUALLY");
+        if(isFighting) return;
+
+        isFighting = true;
+        int troubleCode = currentTown.lookForTrouble();
+
         FadeTransition BGin = new FadeTransition(Duration.millis(1000), badGuyImage);
         BGin.setFromValue(0);
         BGin.setToValue(1);
@@ -179,8 +186,8 @@ public class TreasureHunterController {
         RotateTransition BGfall = new RotateTransition(Duration.millis(500), badGuyImage);
         BGfall.setByAngle(-90);
 
-        RotateTransition BGrise = new RotateTransition(Duration.millis(500), hunterImage);
-        BGrise.setByAngle(-90);
+        RotateTransition BGrise = new RotateTransition(Duration.millis(500), badGuyImage);
+        BGrise.setByAngle(90);
 
         RotateTransition GGfall = new RotateTransition(Duration.millis(500), hunterImage);
         GGfall.setByAngle(90);
@@ -188,21 +195,42 @@ public class TreasureHunterController {
         RotateTransition GGrise = new RotateTransition(Duration.millis(500), hunterImage);
         GGrise.setByAngle(-90);
 
-        SequentialTransition seqTransition = new SequentialTransition (
+        SequentialTransition winAnim = new SequentialTransition (
                 BGin,
                 new PauseTransition(Duration.millis(1000)),
                 BGfall,
-                GGfall,
                 new PauseTransition(Duration.millis(1000)),
                 BGout,
-                GGrise,
                 BGrise
         );
 
-        seqTransition.play();
-        boolean bankrupt = currentTown.lookForTrouble();
+        SequentialTransition loseAnim = new SequentialTransition (
+                BGin,
+                new PauseTransition(Duration.millis(1000)),
+                GGfall,
+                new PauseTransition(Duration.millis(1000)),
+                BGout,
+                GGrise
+        );
+
+        EventHandler<ActionEvent> onEnd = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                isFighting = false;
+            }
+        };
+
+        winAnim.setOnFinished(onEnd);
+        loseAnim.setOnFinished(onEnd);
+
+        if(troubleCode == 201) winAnim.play();
+        else if(troubleCode >= 400) loseAnim.play();
+        else isFighting=false;
+
+
         setNumCoins.output(String.valueOf(hunter.getGold()));
-        if (bankrupt) {
+        if (troubleCode == 401) {
+            // Bankrupt
             //output.output("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate :(");
             endGame("You lost all of your gold in the brawl, " + hunter.getName() + "! How unfortunate...");
         }
@@ -259,5 +287,7 @@ public class TreasureHunterController {
         bronzeIcon.setEffect(blackout);
         silverIcon.setEffect(blackout);
         folwelliumIcon.setEffect(blackout);
+
+        isFighting = false;
     }
 }

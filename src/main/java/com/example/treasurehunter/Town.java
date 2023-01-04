@@ -134,7 +134,11 @@ public class Town {
      * The chances of finding a fight and winning the gold are based on the toughness of the town.<p>
      * The tougher the town, the easier it is to find a fight, and the harder it is to win one.
      */
-    public boolean lookForTrouble() {
+    public int lookForTrouble() {
+        // 200 No Trouble
+        // 201 Trouble, Won
+        // 400 Trouble, Lost
+        // 401 Trouble, Bankrupt
         String printMessage = "";
         double noTroubleChance;
         if (toughTown) {
@@ -146,7 +150,7 @@ public class Town {
         if (Math.random() > noTroubleChance && !Mode.isDev()) {
             printMessage = "You couldn't find any trouble";
             output.output(printMessage);
-            return false;
+            return 200;
         } else {
             printMessage = "You want trouble, stranger! You got it!\nOof! Umph! Ow!\n\n";
             int goldDiff = Mode.isDev() ? 100 : (int) (Math.random() * 10) + 1;
@@ -155,13 +159,13 @@ public class Town {
                 printMessage += "\n\nYou won the brawl and receive " + goldDiff + " gold.";
                 hunter.changeGold(goldDiff);
                 output.output(printMessage);
-                return false;
+                return 201;
             } else {
                 printMessage += hunterLosesMessage();
                 printMessage += "\n\nYou lost the brawl and pay " + goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
                 output.output(printMessage);
-                return hunter.getGold() == 0;
+                return hunter.getGold() == 0 ? 401 : 400;
             }
         }
     }

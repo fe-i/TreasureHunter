@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.treasurehunter.ShopController">
   <tabs>
@@ -38,22 +39,21 @@
                       <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="278.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the shop! We have the finest wares in town." wrappingWidth="234.5009765625" GridPane.valignment="TOP">
+                        <TextFlow style="-fx-border-color: #795548; -fx-background-color: #ecae78; -fx-border-width: 5;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the shop! We have the finest wares in town including:" wrappingWidth="234.5009765625">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                           </children>
                            <GridPane.margin>
-                              <Insets left="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Currently, we have:" wrappingWidth="234.5009765625" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Text>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextFlow>
                         <FlowPane fx:id="werthy" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="225.0" prefWidth="125.0" style="-fx-background-color: #ecae78; -fx-border-color: #795548; -fx-border-width: 5;" vgap="10.0" GridPane.rowIndex="1">
                            <children>
                               <RadioButton fx:id="buyOption1" mnemonicParsing="false" text="Water">
@@ -71,8 +71,21 @@
                            <padding>
                               <Insets left="10.0" top="10.0" />
                            </padding>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
                         </FlowPane>
-                        <Text fx:id="outputFieldBuy" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+                        <TextFlow style="-fx-background-color: #ecae78; -fx-border-color: #795548; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                           <children>
+                              <Text fx:id="outputFieldBuy" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextFlow>
                         <ProgressBar fx:id="coinsBuy" nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" progress="0.72" style="-fx-accent: #ffea08;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <padding>
                               <Insets bottom="10.0" left="10.0" />
@@ -119,22 +132,21 @@
                         <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="278.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What're ya lookin to sell? You currently have:" wrappingWidth="234.5009765625" GridPane.valignment="TOP">
+                        <TextFlow style="-fx-background-color: #ecae78; -fx-border-color: #795548; -fx-border-width: 5;" GridPane.valignment="TOP">
                            <GridPane.margin>
-                              <Insets left="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Currently, you have:" wrappingWidth="234.5009765625" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets left="10.0" />
-                           </GridPane.margin>
-                        </Text>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What're ya lookin to sell? You currently have:" wrappingWidth="234.5009765625">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextFlow>
                         <FlowPane fx:id="werthy1" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="225.0" prefWidth="125.0" style="-fx-background-color: #ecae78; -fx-border-color: #795548; -fx-border-width: 5;" vgap="10.0" GridPane.rowIndex="1">
                            <children>
                               <RadioButton fx:id="sellOption1" mnemonicParsing="false" text="Water">
@@ -152,8 +164,21 @@
                            <padding>
                               <Insets left="10.0" top="10.0" />
                            </padding>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
                         </FlowPane>
-                        <Text fx:id="outputFieldSell" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+                        <TextFlow style="-fx-background-color: #ecae78; -fx-border-color: #795548; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                           <children>
+                              <Text fx:id="outputFieldSell" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </TextFlow>
                         <ProgressBar fx:id="coinsSell" nodeOrientation="RIGHT_TO_LEFT" prefWidth="200.0" progress="0.72" style="-fx-accent: #ffea08;" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <padding>
                               <Insets bottom="10.0" left="10.0" />
