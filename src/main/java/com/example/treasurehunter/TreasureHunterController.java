@@ -274,9 +274,9 @@ public class TreasureHunterController {
     @FXML
     protected void onMoveClick() throws URISyntaxException {
         if (Mode.isEasy() || Mode.isDev() || currentTown.leaveTown()) {
+            output.output(""); // reset the text in outputField so it doesn't stack
             enterTown();
             townInfo.setText(currentTown.toString());
-
         } else
             output.output("You're unable to leave this town. You need a " + currentTown.getTerrain().getNeededItem() + ".");
     }
